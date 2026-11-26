@@ -79,6 +79,28 @@ NINGYO/
 
 ---
 
+## MCP Client Configuration (Antigravity / Claude Code / Codex)
+
+Add this entry to your MCP config after launching VRoid Studio (port `17891`):
+- **Antigravity**: `~/.gemini/config/mcp_config.json`
+- **Claude Code**: `~/.claude.json` or project `.mcp.json`
+- **OpenAI Codex**: `~/.codex/config.toml` (HTTP MCP URL `http://127.0.0.1:17891/mcp`)
+
+```json
+{
+  "mcpServers": {
+    "vroid-studio": {
+      "url": "http://127.0.0.1:17891/mcp"
+    }
+  }
+}
+```
+
+- **Streamable HTTP Session**: Persist the `Mcp-Session-Id` response header from `initialize` across `tools/list` and `tools/call` requests.
+- **Companion Skill**: Pair with **[`KAGAMI`](https://github.com/triwahyu45/KAGAMI)** for `.vroid` binary Protobuf/UV engineering, VRM 0.0/1.0 bone clamps, and multi-angle visual QA.
+
+---
+
 ## Credits & License
 - **MIT License**
 - Built on top of [`brainrom/vroid-studio-mcp`](https://github.com/brainrom/vroid-studio-mcp) (`VroidStudioMcp.dll`).
