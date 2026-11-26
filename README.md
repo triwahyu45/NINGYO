@@ -82,7 +82,7 @@ NINGYO/
 ## MCP Client Configuration (Antigravity / Claude Code / Codex)
 
 Add this entry to your MCP config after launching VRoid Studio (port `17891`):
-- **Antigravity**: `~/.gemini/config/mcp_config.json`
+- **Antigravity**: Antigravity global MCP config (`mcp_config.json`)
 - **Claude Code**: `~/.claude.json` or project `.mcp.json`
 - **OpenAI Codex**: `~/.codex/config.toml` (HTTP MCP URL `http://127.0.0.1:17891/mcp`)
 
