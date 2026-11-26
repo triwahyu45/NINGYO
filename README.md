@@ -1,12 +1,12 @@
-ï»¿# vroid-mcp
+# ningyo
 
 BepInEx 6 (IL2CPP) MCP plugin bundle for **VRoid Studio 2.14.0**, combining upstream `vroid-studio-mcp` (`VroidStudioMcp.dll`) with **`VroidVrmExporter.dll`** for headless, dialog-free `.vrm` export (`VRM 1.0` & `VRM 0.0`).
 
 ## Included Files
-- `BepInEx/plugins/VroidStudioMcp.dll` â€” Core MCP server (`127.0.0.1:17891/mcp`) & TCP bridge (`127.0.0.1:17890`)
-- `BepInEx/plugins/VroidVrmExporter.dll` â€” Adds `export_vrm(path, version, title, author)` MCP tool (no OS file dialog)
-- `BepInEx/config/com.kokokoshka.vroidstudiomcp.servers.json` â€” Server & MSAA/SSAA preview config
-- `i18n/` & `labels/` â€” Readable English slider/preset labels
+- `BepInEx/plugins/VroidStudioMcp.dll` — Core MCP server (`127.0.0.1:17891/mcp`) & TCP bridge (`127.0.0.1:17890`)
+- `BepInEx/plugins/VroidVrmExporter.dll` — Adds `export_vrm(path, version, title, author)` MCP tool (no OS file dialog)
+- `BepInEx/config/com.kokokoshka.vroidstudiomcp.servers.json` — Server & MSAA/SSAA preview config
+- `i18n/` & `labels/` — Readable English slider/preset labels
 
 ## Installation
 1. Install **BepInEx 6 (Unity IL2CPP)** into your `VRoid Studio` directory.
