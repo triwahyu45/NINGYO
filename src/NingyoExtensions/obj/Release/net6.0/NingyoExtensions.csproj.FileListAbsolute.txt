@@ -1,0 +1,13 @@
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\obj\Release\net6.0\NingyoExtensions.csproj.AssemblyReference.cache
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\obj\Release\net6.0\NingyoExtensions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\obj\Release\net6.0\NingyoExtensions.AssemblyInfoInputs.cache
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\obj\Release\net6.0\NingyoExtensions.AssemblyInfo.cs
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\obj\Release\net6.0\NingyoExtensions.csproj.CoreCompileInputs.cache
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\obj\Release\net6.0\NingyoExtensions.sourcelink.json
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\bin\Release\net6.0\NingyoExtensions.deps.json
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\bin\Release\net6.0\NingyoExtensions.dll
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\bin\Release\net6.0\NingyoExtensions.pdb
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\obj\Release\net6.0\NingyoExtensions.dll
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\obj\Release\net6.0\refint\NingyoExtensions.dll
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\obj\Release\net6.0\NingyoExtensions.pdb
+C:\Users\hando\.gemini\antigravity\brain\7f096785-8bd9-4bb3-a9ed-9001e27622f7\scratch\NINGYO\src\NingyoExtensions\obj\Release\net6.0\ref\NingyoExtensions.dll

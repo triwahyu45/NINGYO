@@ -1,115 +1,84 @@
-# NINGYO — VRoid Studio 2.14.0 MCP + Headless `.vrm` Exporter
+# NINGYO — VRoid Studio MCP Suite (v2.0)
 
-MCP Server Bundle (BepInEx 6 IL2CPP) for **Antigravity**, **Claude Code**, and **OpenAI Codex**. Connects AI agents directly to **VRoid Studio 2.14.0**'s internal API at `http://127.0.0.1:17891/mcp` — works even while the window is minimized/in the background — with full preset/slider/camera control **plus** dialog-free `.vrm` export (`VRM 1.0` & `VRM 0.0`).
+**NINGYO** turns **VRoid Studio** (Steam / Windows, tested on **v2.16.0** & **v2.14.0+**) into a headless-capable, AI-controllable 3D character studio over **Model Context Protocol (MCP)** (`http://127.0.0.1:17891/mcp`).
 
----
-
-## Architecture (Why Internal API Hook)
-
-```
-MCP Client (Claude / Codex / Antigravity)
-   └──► http://127.0.0.1:17891/mcp (VroidStudioMcp.dll + VroidVrmExporter.dll)
-           └──► VRoid Studio 2.14.0 Internal IL2CPP API (no OCR, no mouse hijack, works minimized)
-```
+It uses a **Modular Companion Extension Architecture**:
+- **`VroidStudioMcp.dll`** (upstream [`brainrom/vroid-studio-mcp`](https://github.com/brainrom/vroid-studio-mcp) v1.1.0, MIT) — kept clean and unmodified for effortless upstream updates.
+- **`NingyoExtensions.dll`** (NINGYO v2.0, MIT) — Harmony + BepInEx 6 IL2CPP companion plugin that hooks into `VroidStudioMcp` at runtime to add **15 new MCP tools**, upgrade `export_vrm` with optimization controls, and fix the post-`main_menu` / post-`export_vrm` camera freeze bug (`CameraRebindPatch`).
 
 ---
 
-## Requirements & Dependencies (For Agents)
+## What's New in v2.0 (23 -> 38 MCP Tools)
 
-- **Host App**: **VRoid Studio 2.14.0** (Steam AppID `1486350` / Windows; also works under Wine on Linux)
-- **Mod Loader**: **BepInEx 6 (Unity IL2CPP x64)** installed in the `VRoid Studio` folder
-- **Auto-Launcher Helper** *(optional)*: **Python 3.10+** (stdlib only, `scripts/ningyo_launcher.py`)
-- **Companion Skill**: [`kagami`](https://github.com/triwahyu45/KAGAMI) (VRoid `.vroid` Protobuf/UV engineering + VRM 0.0/1.0 bone clamps + visual QA)
-- **API Keys / Secrets**: None (100% local & free)
+- **Headless VRM 1.0 / 0.0 Export v2 (`export_vrm`)**: Direct export with zero OS Save File dialogs, plus optimization flags (`hair_combine`, `mesh_erasure`, `material_reduction`, `atlas_resolution`, `texture_compression`, `disable_spring_bones`) and clean preview cleanup back to Edit Mode.
+- **Camera Freeze Fix (`CameraRebindPatch`)**: Automatically rebinds `GlobalBus.EditAvatarCameraPosition` / `PhotoBoothAvatarCameraPosition` after `main_menu` (`BackToModelSelect`) and `export_vrm`.
+- **Direct Raster Texture I/O (`texture_list`, `texture_export_layer`, `texture_import_layer`)**: Export and import PNG layers directly via `VRoidCore` commands without opening Texture Editor or OS file pickers (undoable).
+- **Expressions (`expressions_list`, `expression_set`)**: Inspect and drive all 14 Expression Editor blendshape categories or reset expressions.
+- **Look & Shading (`look_get`, `look_set`)**: Control Outline, Rim Light, Shading, SpringBone amplitude, and Eye Excursion parameters.
+- **Accessories (`accessory_list`, `accessory_add`, `accessory_remove`, `accessory_params`)**: List templates/instances, attach/remove accessories, and tune parameters.
+- **PhotoBooth Control (`photobooth`)**: Enter/exit PhotoBooth, switch `pose_index`, toggle `auto_blink` / `look_at_camera`, set background color/alpha, or reset pose/lighting.
+- **Session & Metrics (`undo`, `redo`, `body_metrics`)**: History undo/redo plus real-time 3D character height, bounding box, and anatomical landmark measurements.
+- **Windows Steam Launcher (`scripts/ningyo_launcher.py`)**: Launches VRoid Studio visibly via `steam.exe -applaunch 1486350` and verifies MCP readiness (`Mcp-Session-Id` handshake).
 
 ---
 
-## Installation & MCP Client Config (Antigravity / Claude Code / Codex)
+## Tool Catalog (38 Tools)
 
-1. Install **BepInEx 6 (Unity IL2CPP)** into your `VRoid Studio` directory.
-2. Copy `BepInEx/`, `i18n/`, and `labels/` from this repository into your `VRoid Studio` root directory.
-3. Launch VRoid Studio (or run `python scripts/ningyo_launcher.py launch`), which starts the MCP server on port `17891`.
-4. Add this entry to your MCP config:
-   - **Antigravity**: `~/.gemini/config/mcp_config.json`
-   - **Claude Code**: `~/.claude.json` or project `.mcp.json`
-   - **OpenAI Codex**: `~/.codex/config.toml` (HTTP MCP URL `http://127.0.0.1:17891/mcp`)
+| Category | Tools |
+| :--- | :--- |
+| **Core Session & Navigation** | `state`, `open`, `create`, `save`, `main_menu`, `exit`, `help`, `status`, `undo`, `redo`, `body_metrics` |
+| **Editing & Presets** | `sections`, `categories`, `enter`, `presets`, `preset_preview_list`, `preset_preview_range`, `select_preset`, `create_custom_preset`, `import_custom_preset`, `export_custom_preset`, `set_param`, `batch` |
+| **Camera & Capture** | `camera`, `screenshot` |
+| **Look & Shading** | `look_get`, `look_set` |
+| **Expressions** | `expressions_list`, `expression_set` |
+| **Accessories** | `accessory_list`, `accessory_add`, `accessory_remove`, `accessory_params` |
+| **Textures (Headless)** | `texture_list`, `texture_export_layer`, `texture_import_layer` |
+| **PhotoBooth & VRM Export** | `photobooth`, `export_vrm` |
 
-```json
-{
-  "mcpServers": {
-    "vroid-studio": {
-      "url": "http://127.0.0.1:17891/mcp"
-    }
-  }
-}
+---
+
+## Installation & Build
+
+### Option A: Prebuilt Plugins
+Copy `BepInEx/plugins/VroidStudioMcp.dll` and `BepInEx/plugins/NingyoExtensions.dll` into:
+```text
+<VRoid Studio>/BepInEx/plugins/
 ```
+Make sure BepInEx 6 (Unity.IL2CPP) and `com.kokokoshka.vroidstudiomcp.servers.json` (`enabled: true`) are installed.
 
-### Optional Auto-Launcher & Health Check (`scripts/ningyo_launcher.py`)
+### Option B: Build from Source (.NET 6.0 SDK)
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build.ps1 -DeployToVroid
+```
+*(Stop `VRoidStudio.exe` before deploying so `NingyoExtensions.dll` is not file-locked.)*
 
+### Launch & Health Check
 ```bash
-# Check if port 17891 is up and locate VRoidStudio.exe
+python scripts/ningyo_launcher.py launch --timeout 90
 python scripts/ningyo_launcher.py status
-
-# Auto-launch VRoid Studio (via exe or steam://rungameid/1486350) and wait for port 17891
-python scripts/ningyo_launcher.py launch --timeout 120
+python scripts/ningyo_launcher.py restart --timeout 90
 ```
-
-Environment variables:
-- `NINGYO_MCP_URL` (default: `http://127.0.0.1:17891/mcp`)
-- `VROID_STUDIO_PATH` (optional custom path to `VRoidStudio.exe`)
 
 ---
 
-## Available MCP Tools (23 Tools)
-
-### Lifecycle & Session
-| Tool | Description |
-| :--- | :--- |
-| `state` | Current editor state (open model, section, category) |
-| `status` | Non-blocking engine/queue status (safe to poll during `batch`) |
-| `open(path)` | Open an existing `.vroid` file |
-| `create(gender)` | Create a new character (`Fem` / `Masc`) |
-| `save(path?)` | Save the active `.vroid` project |
-| `main_menu` / `exit` | Return to main menu or close editor |
-| `help(topic?)` | Authoritative reference for categories, sliders, and colors |
-
-### Navigation, Presets & Parameters
-| Tool | Description |
-| :--- | :--- |
-| `sections` | List top-level sections (`Face`, `Hairstyle`, `Body`, `Outfit`) |
-| `categories(section)` | List tabs inside a section |
-| `enter(section, category)` | Enter a category and return its numeric/color parameters + camera view |
-| `set_param(param, value)` | Set a numeric slider or `#RRGGBB` / `r,g,b` color |
-| `presets` | List available presets in the current category |
-| `preset_preview_list` / `preset_preview_range` | Fetch preset thumbnail previews |
-| `select_preset(index)` | Apply a preset by index |
-| `create_custom_preset` / `import_custom_preset` / `export_custom_preset` | Manage `.vroidcustomitem` presets |
-
-### Camera, Visual QA & `.vrm` Export
-| Tool | Description |
-| :--- | :--- |
-| `camera(...)` | Frame camera (yaw, pitch, distance, target) |
-| `screenshot(...)` | Capture MSAA/SSAA rendered preview of the character |
-| `batch(ops)` | Execute ordered operations + captures in one call |
-| `export_vrm(path, version, title, author)` | **Headless `.vrm` export (`"1.0"` or `"0.0"`) with zero OS dialogs** |
+## Repository Structure
+```text
+NINGYO/
+├── BepInEx/
+│   ├── config/
+│   └── plugins/
+│       ├── VroidStudioMcp.dll       # Upstream core MCP host (v1.1.0, MIT)
+│       └── NingyoExtensions.dll     # NINGYO v2.0 companion extension (15 tools + fixes)
+├── src/
+│   └── NingyoExtensions/            # C# (.NET 6.0 / BepInEx 6 IL2CPP) source
+├── scripts/
+│   ├── build.ps1                    # Build & deploy NingyoExtensions.dll
+│   └── ningyo_launcher.py           # Steam launcher + Mcp-Session-Id health probe
+└── README.md
+```
 
 ---
 
-## `export_vrm` Example
-
-```json
-{
-  "path": "C:\\path\\to\\output.vrm",
-  "version": "1.0",
-  "title": "Model Title",
-  "author": "Author Name"
-}
-```
-
-## Included Files
-
-- `BepInEx/plugins/VroidStudioMcp.dll` & `VroidVrmExporter.dll`
-- `BepInEx/config/com.kokokoshka.vroidstudiomcp.servers.json` — MSAA 4x, SSAA `render_scale: 2`, anisotropic filtering
-- `scripts/ningyo_launcher.py` — Zero-dependency Python auto-launcher & port readiness checker
-- `i18n/en.json` & `labels/*.json` — Human-readable English slider and preset labels
-- `LICENSE`
+## Credits & License
+- **MIT License**
+- Built on top of [`brainrom/vroid-studio-mcp`](https://github.com/brainrom/vroid-studio-mcp) (`VroidStudioMcp.dll`).

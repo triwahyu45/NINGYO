@@ -1,0 +1,79 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>NingyoExtensions</AssemblyName>
+    <RootNamespace>NingyoExtensions</RootNamespace>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PlatformTarget>x64</PlatformTarget>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <VroidDir Condition="'$(VroidDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\VRoid Studio</VroidDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="VroidStudioMcp">
+      <HintPath>$(VroidDir)\BepInEx\plugins\VroidStudioMcp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Core">
+      <HintPath>$(VroidDir)\BepInEx\core\BepInEx.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP">
+      <HintPath>$(VroidDir)\BepInEx\core\BepInEx.Unity.IL2CPP.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>$(VroidDir)\BepInEx\core\Il2CppInterop.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2CppInterop.Common">
+      <HintPath>$(VroidDir)\BepInEx\core\Il2CppInterop.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(VroidDir)\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>$(VroidDir)\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(VroidDir)\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(VroidDir)\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(VroidDir)\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VRoidStudio">
+      <HintPath>$(VroidDir)\BepInEx\interop\VRoidStudio.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VRoid.Studio">
+      <HintPath>$(VroidDir)\BepInEx\interop\VRoid.Studio.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VRoid.UI">
+      <HintPath>$(VroidDir)\BepInEx\interop\VRoid.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VRoidCore">
+      <HintPath>$(VroidDir)\BepInEx\interop\VRoidCore.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VRM">
+      <HintPath>$(VroidDir)\BepInEx\interop\VRM.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VRM10">
+      <HintPath>$(VroidDir)\BepInEx\interop\VRM10.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
