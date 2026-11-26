@@ -1,4 +1,4 @@
-# ningyo — VRoid Studio 2.14.0 MCP + Headless `.vrm` Exporter
+# NINGYO — VRoid Studio 2.14.0 MCP + Headless `.vrm` Exporter
 
 MCP Server Bundle (BepInEx 6 IL2CPP) for **Antigravity**, **Claude Code**, and **OpenAI Codex**. Connects AI agents directly to **VRoid Studio 2.14.0**'s internal API at `http://127.0.0.1:17891/mcp` — works even while the window is minimized/in the background — with full preset/slider/camera control **plus** dialog-free `.vrm` export (`VRM 1.0` & `VRM 0.0`).
 
@@ -19,7 +19,7 @@ MCP Client (Claude / Codex / Antigravity)
 - **Host App**: **VRoid Studio 2.14.0** (Steam AppID `1486350` / Windows; also works under Wine on Linux)
 - **Mod Loader**: **BepInEx 6 (Unity IL2CPP x64)** installed in the `VRoid Studio` folder
 - **Auto-Launcher Helper** *(optional)*: **Python 3.10+** (stdlib only, `scripts/ningyo_launcher.py`)
-- **Companion Skill**: [`kagami`](https://github.com/triwahyu45/kagami) (VRoid `.vroid` Protobuf/UV engineering + VRM 0.0/1.0 bone clamps + visual QA)
+- **Companion Skill**: [`kagami`](https://github.com/triwahyu45/KAGAMI) (VRoid `.vroid` Protobuf/UV engineering + VRM 0.0/1.0 bone clamps + visual QA)
 - **API Keys / Secrets**: None (100% local & free)
 
 ---
