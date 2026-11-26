@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "tcp": "127.0.0.1:17890",
+  "mcp": "127.0.0.1:17891",
+  "dev_tools": false,
+  "debug_artifacts": false,
+  "dump_artifacts": false,
+  "dialog_trace": false,
+  "max_batch_ops": 200,
+  "msaa_samples": 4,
+  "aniso_filtering": true,
+  "render_scale": 2
+}
